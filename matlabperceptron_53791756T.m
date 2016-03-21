@@ -1,4 +1,4 @@
-function mynn_XOR_53791756T
+function matlabperceptron_53791756T
 % Funcion principal que realiza las funciones de
 %1) Creación de las variables para el banco de entrenamiento y banco de
  %validación
@@ -11,26 +11,28 @@ function mynn_XOR_53791756T
 %Creamos entradas y salidas de entrenamiento para una funcion AND
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Inicializamos las variables E1, E2 y SE ideales para entrenamiento
-VT=100000; %numero de muestras de entrada
+VT=1000; %numero de muestras de entrada
 NV=round(VT); %aseguramos que VT sea un numero entero
 E1=round(rand(NV,1)); %vector de NV valores de entrada en pin 1
 E2=round(rand(NV,1)); %vector de NV valores de entrada en pin 2
 SE=double(xor(E1,E2)); %vector salida ideal para las entradas E1 y E
 %%%% Creamos entradas y salidas de validacion E1V, E2V, SEV para test
-NVV=20;
+NVV=10;
 E1V=round(rand(NVV,1));
 E2V=round(rand(NVV,1));
 SEV=double(xor(E1V,E2V));
 % Inicializamos una red neuronal para 2 entradas %%%
-mynn=initialize_nn(2);
+mynn=feedforwardnet(2);
+mynn=configure(mynn,[E1';E2'],SE');
 % Entrenamos la red neuronal para un LR, por defecto 0.7
 LR=0.7;
-mynnT=train_nn(mynn,LR,[E1 E2],SE);
+mynn.trainParam.lr = LR;
+[mynn,tr]=train(mynn,[E1';E2'], SE');
 %evaluamos la red
-S_est=usenn(mynnT,[E1V E2V]);
+S_est=mynn([E1V';E2V']);
 %Calculamos y representamos el error cometido
-[SEV S_est];
-error=mean(abs(SEV-S_est));
+[SEV' S_est];
+error=mean(abs(SEV'-S_est));
 close all
 figure,
 plot(SEV,'ok','LineWidth',2),hold on

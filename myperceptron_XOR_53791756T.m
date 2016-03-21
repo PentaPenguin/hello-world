@@ -50,7 +50,7 @@ xlabel('Number of test','FontWeight','bold')
 ylabel('Output values','FontWeight','bold')
 axis([-1 length(SEV)+1 -0.1 1.3])
 legend('Correct Values','Perceptron Output')
-title('Evaluation of Perceptron Ouput for an XOR','FontWeight','bold')
+title('Evaluation of Perceptron Ouput for an AND','FontWeight','bold')
 
 end
 
