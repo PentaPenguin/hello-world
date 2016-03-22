@@ -1,4 +1,10 @@
 function myperceptron_AND_53791756T
+% function myperceptron_AND_53791756T
+% Función que crea, entrena y comprueba que un perceptrón se adapta
+% a una función lógica AND
+% Código completado por David Millán Navarro y Guillermo Moreno Hernández
+% Sistemas complejos bioinspirados - ETSIT - UPV - Curso 2015-2016
+% Basado en el código de Andreu M. Climent
 
 % Funcion principal que realiza las funciones de
 %1) Creación de las variables para el banco de entrenamiento y banco de
@@ -69,7 +75,7 @@ function [myperceptron]=initialize_perceptron(n_inputs)
  % myperceptron.weights: %Pesos del perceptron
  
  myperceptron.bias=1;
- myperceptron.weights=2*rand(n_inputs+1,1)-1;
+ myperceptron.weights=2*rand(n_inputs+1,1)-1; % Genereamos valores de bias entre -1 y 1
  
 end
 
@@ -94,10 +100,10 @@ function myperceptron=train_perceptron(myperceptron,LR,input,output)
  %myperceptron.weights: %Pesos del perceptron ya entrenado
 
  for i=1:5000
-     v=myperceptron.weights(1)*myperceptron.bias+myperceptron.weights(2)*input(i,1)+myperceptron.weights(3)*input(i,2);
-     y=1/(1+exp(-v));
+     v=myperceptron.weights(1)*myperceptron.bias+myperceptron.weights(2)*input(i,1)+myperceptron.weights(3)*input(i,2); % Cálculo de la salida
+     y=1/(1+exp(-v)); % Función de activación
      err=output(i)-y;
-     myperceptron.weights=myperceptron.weights+LR*err*[1;input(i,1);input(i,2)];
+     myperceptron.weights=myperceptron.weights+LR*err*[1;input(i,1);input(i,2)]; % Actualización de los pesos
  end
  
 end
@@ -110,8 +116,8 @@ function output=useperceptron(myperceptron,input)
 % fase de entrenamiento
 
 for i=1:20
-     v=myperceptron.weights(1)*myperceptron.bias+myperceptron.weights(2)*input(i,1)+myperceptron.weights(3)*input(i,2);
-     output(i)=1/(1+exp(-v));
+     v=myperceptron.weights(1)*myperceptron.bias+myperceptron.weights(2)*input(i,1)+myperceptron.weights(3)*input(i,2); % Cálculo de la salida
+     output(i)=1/(1+exp(-v)); % Función de activación
 end
 output=output(:);
 end

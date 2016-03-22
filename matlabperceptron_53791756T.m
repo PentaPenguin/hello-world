@@ -1,4 +1,11 @@
 function matlabperceptron_53791756T
+% function matlabperceptron_53791756T
+% Función que crea, entrena y comprueba que una red neuronal se adapta
+% a una función lógica XOR
+% Código completado por David Millán Navarro y Guillermo Moreno Hernández
+% Sistemas complejos bioinspirados - ETSIT - UPV - Curso 2015-2016
+% Basado en el código de Andreu M. Climent
+
 % Funcion principal que realiza las funciones de
 %1) Creación de las variables para el banco de entrenamiento y banco de
  %validación
@@ -63,8 +70,7 @@ function [mynn]=initialize_nn(n_inputs)
 rand('state',sum(100*clock)); %inicializa random en función del reloj
 
 mynn.bias=1;
-mynn.weights=2*rand(n_inputs+1,3)-1;
-wei=mynn.weights
+mynn.weights=2*rand(n_inputs+1,3)-1; % Genereamos valores de bias entre -1 y 1
 end
 
 
